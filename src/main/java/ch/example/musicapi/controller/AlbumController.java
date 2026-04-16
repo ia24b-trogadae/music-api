@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/albums")
@@ -49,14 +50,13 @@ public class AlbumController {
     }
 
     @PostMapping
-    public ResponseEntity<Album> createAlbum(@RequestBody Album album) {
-        setAlbumReferenceInSongs(album);
+    public ResponseEntity<Album> createAlbum(@Valid @RequestBody Album album) {        setAlbumReferenceInSongs(album);
         Album savedAlbum = albumRepository.save(album);
         return ResponseEntity.status(201).body(savedAlbum);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Album> updateAlbum(@PathVariable Integer id, @RequestBody Album updatedAlbum) {
+    public ResponseEntity<Album> updateAlbum(@PathVariable Integer id, @Valid @RequestBody Album updatedAlbum) {
         Optional<Album> existingAlbumOptional = albumRepository.findById(id);
 
         if (existingAlbumOptional.isEmpty()) {

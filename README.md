@@ -31,6 +31,8 @@ Zusätzlich wurde eine Authentifizierung mit JWT implementiert, um geschützte E
 ### Testausführung
 ![Tests](docs/tests.png)
 
+Die Testfälle wurden erfolgreich ausgeführt. Alle Tests sind bestanden.
+
 ---
 
 ## Validierungsregeln

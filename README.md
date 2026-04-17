@@ -90,7 +90,11 @@ Die API ist dokumentiert und kann über Swagger getestet werden:
 
 [Swagger UI öffnen](http://localhost:8080/swagger-ui/index.html)
 
-Dort können alle Endpunkte direkt ausprobiert werden.
+### Swagger UI
+
+![Swagger](docs/swagger.png)
+
+Die Swagger UI zeigt alle verfügbaren Endpunkte und ermöglicht das direkte Testen der API.
 
 ### Beispiel-Endpunkte
 
@@ -118,6 +122,8 @@ DB_PASSWORD=your_password
 JWT_SECRET=your_secret_key
 JWT_EXPIRATION_MS=3600000 
 ```
+
+Eine Beispielkonfiguration befindet sich in der Datei `.env.example`.
 
 2. Datenbank starten
 
@@ -155,3 +161,5 @@ Die Zugriffsrechte werden über Rollen (ADMIN und EDITOR) gesteuert.
 
 Für die Qualitätssicherung wurden automatisierte Tests erstellt, welche sowohl die Funktionalität der API als auch die
 Security überprüfen.  
+
+Insgesamt zeigt das Projekt den vollständigen Aufbau einer strukturierten und abgesicherten Backend-Anwendung mit klarer Trennung von Controller-, Service- und Datenzugriffsschicht.

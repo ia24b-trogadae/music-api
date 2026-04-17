@@ -30,22 +30,26 @@ public class DatabaseInitializer implements CommandLineRunner {
             boolean tablesExist = allRequiredTablesExist(connection);
 
             if (!tablesExist) {
-                logger.info("Tables missing. Running schema and sample data.");
+                logger.info("Required tables are missing. Running schema.sql and sample-data.sql");
 
                 ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
                 populator.addScript(new ClassPathResource("sql/schema.sql"));
                 populator.addScript(new ClassPathResource("sql/sample-data.sql"));
                 populator.execute(dataSource);
 
+                logger.info("Database setup completed successfully.");
+
             } else if (!hasAlbumData(connection)) {
-                logger.info("Tables exist but no data. Inserting sample data.");
+                logger.info("Tables exist but contain no album data. Running sample-data.sql");
 
                 ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
                 populator.addScript(new ClassPathResource("sql/sample-data.sql"));
                 populator.execute(dataSource);
 
+                logger.info("Sample data inserted successfully.");
+
             } else {
-                logger.info("Database already initialized.");
+                logger.info("Database already initialized. No setup needed.");
             }
 
         } catch (Exception e) {

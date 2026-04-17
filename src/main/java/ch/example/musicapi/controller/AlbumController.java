@@ -3,6 +3,8 @@ package ch.example.musicapi.controller;
 import ch.example.musicapi.model.Album;
 import ch.example.musicapi.services.AlbumService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/albums")
 public class AlbumController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AlbumController.class);
 
     private final AlbumService albumService;
 
@@ -28,51 +32,74 @@ public class AlbumController {
 
     @GetMapping
     public ResponseEntity<List<Album>> getAllAlbums() {
-        return ResponseEntity.ok(albumService.getAllAlbums());
+        List<Album> albums = albumService.getAllAlbums();
+        logger.info("Fetched {} albums", albums.size());
+        return ResponseEntity.ok(albums);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Album> getAlbumById(@PathVariable Integer id) {
         Optional<Album> album = albumService.getAlbumById(id);
-        return album.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return album.map(foundAlbum -> {
+                    logger.info("Album found: id={}, title='{}'", foundAlbum.getId(), foundAlbum.getTitle());
+                    return ResponseEntity.ok(foundAlbum);
+                })
+                .orElseGet(() -> {
+                    logger.warn("Album with id {} not found", id);
+                    return ResponseEntity.notFound().build();
+                });
     }
 
     @GetMapping("/count")
     public ResponseEntity<Map<String, Long>> countAlbums() {
-        return ResponseEntity.ok(Map.of("count", albumService.countAlbums()));
+        long count = albumService.countAlbums();
+        logger.info("Album count requested: {}", count);
+        return ResponseEntity.ok(Map.of("count", count));
     }
 
     @GetMapping("/by-date")
     public ResponseEntity<List<Album>> getAlbumsByReleaseDate(@RequestParam LocalDate releaseDate) {
-        return ResponseEntity.ok(albumService.getAlbumsByReleaseDate(releaseDate));
+        List<Album> albums = albumService.getAlbumsByReleaseDate(releaseDate);
+        logger.info("Fetched {} albums for release date {}", albums.size(), releaseDate);
+        return ResponseEntity.ok(albums);
     }
 
     @PostMapping
     public ResponseEntity<Album> createAlbum(@Valid @RequestBody Album album) {
         Album savedAlbum = albumService.createAlbum(album);
+        logger.info("Album created: id={}, title='{}'", savedAlbum.getId(), savedAlbum.getTitle());
         return ResponseEntity.status(201).body(savedAlbum);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Album> updateAlbum(@PathVariable Integer id, @Valid @RequestBody Album album) {
         Optional<Album> updatedAlbum = albumService.updateAlbum(id, album);
-        return updatedAlbum.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return updatedAlbum.map(updated -> {
+                    logger.info("Album updated: id={}, title='{}'", updated.getId(), updated.getTitle());
+                    return ResponseEntity.ok(updated);
+                })
+                .orElseGet(() -> {
+                    logger.warn("Album with id {} not found for update", id);
+                    return ResponseEntity.notFound().build();
+                });
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAlbumById(@PathVariable Integer id) {
         boolean deleted = albumService.deleteAlbumById(id);
         if (!deleted) {
+            logger.warn("Album with id {} not found for deletion", id);
             return ResponseEntity.notFound().build();
         }
+        logger.info("Album deleted: id={}", id);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deleteAllAlbums() {
+        long countBeforeDelete = albumService.countAlbums();
         albumService.deleteAllAlbums();
+        logger.info("All albums deleted. Deleted count={}", countBeforeDelete);
         return ResponseEntity.noContent().build();
     }
 }

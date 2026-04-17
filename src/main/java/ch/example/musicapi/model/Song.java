@@ -10,20 +10,20 @@ import lombok.Setter;
 @Setter
 public class Song {
 
-    private Integer id;
+  private Integer id;
 
-    @NotNull(message = "Title must not be null")
-    @Size(min = 2, max = 100, message = "Song title must be between 2 and 100 characters")
-    private String title;
+  @NotNull(message = "Title must not be null")
+  @Size(min = 2, max = 100, message = "Song title must be between 2 and 100 characters")
+  private String title;
 
-    @NotNull(message = "Duration must not be null")
-    @Min(value = 1, message = "Duration must be at least 1 second")
-    private Integer durationSeconds;
+  @NotNull(message = "Duration must not be null")
+  @Min(value = 1, message = "Duration must be at least 1 second")
+  private Integer durationSeconds;
 
-    private String featuring;
+  private String featuring;
 
-    @NotNull(message = "Explicit flag must not be null")
-    private Boolean isExplicit;
+  @NotNull(message = "Explicit flag must not be null")
+  private Boolean isExplicit;
 
-    private Integer albumId;
+  private Integer albumId;
 }

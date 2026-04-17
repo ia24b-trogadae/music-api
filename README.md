@@ -123,6 +123,12 @@ JWT_EXPIRATION_MS=3600000
 
 ---
 
+## Codequalität
+
+Der Code wurde mit Spotless formatiert, um einen einheitlichen und sauberen Code-Stil im gesamten Projekt sicherzustellen.
+
+---
+
 ## Autorin
 
 Elena Trogada

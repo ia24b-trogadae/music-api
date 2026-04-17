@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthService authService;
+  private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+  public AuthController(AuthService authService) {
+    this.authService = authService;
+  }
 
-    @Operation(summary = "Login", description = "Authenticates a user and returns a JWT")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Login successful"),
-            @ApiResponse(responseCode = "401", description = "Invalid username or password")
-    })
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
-    }
+  @Operation(summary = "Login", description = "Authenticates a user and returns a JWT")
+  @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Login successful"),
+    @ApiResponse(responseCode = "401", description = "Invalid username or password")
+  })
+  @PostMapping("/login")
+  public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+    return ResponseEntity.ok(authService.login(request));
+  }
 }

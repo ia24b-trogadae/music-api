@@ -8,9 +8,9 @@ import lombok.Setter;
 @Setter
 public class LoginRequest {
 
-    @NotNull(message = "Username must not be null")
-    private String username;
+  @NotNull(message = "Username must not be null")
+  private String username;
 
-    @NotNull(message = "Password must not be null")
-    private String password;
+  @NotNull(message = "Password must not be null")
+  private String password;
 }

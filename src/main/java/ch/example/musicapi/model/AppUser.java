@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class AppUser {
 
-    private Integer id;
-    private String username;
-    private String password;
-    private Boolean enabled;
-    private Integer roleId;
-    private String roleName;
+  private Integer id;
+  private String username;
+  private String password;
+  private Boolean enabled;
+  private Integer roleId;
+  private String roleName;
 }

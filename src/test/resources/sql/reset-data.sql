@@ -25,7 +25,7 @@ INSERT INTO song (id, title, duration_seconds, featuring, is_explicit, album_id)
 VALUES (4, 'Silver Noise', 230, NULL, false, 2);
 
 INSERT INTO app_user (id, username, password, enabled, role_id)
-VALUES (1, 'admin', 'dummyhash', true, 1);
+VALUES (1, 'admin', 'PLACEHOLDER', true, 1);
 
 INSERT INTO app_user (id, username, password, enabled, role_id)
-VALUES (2, 'editor', 'dummyhash', true, 2);
+VALUES (2, 'editor', 'PLACEHOLDER', true, 2);

@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(
-    info =
+        info =
         @Info(
-            title = "Music API",
-            version = "1.0",
-            description = "Backend API for managing albums and songs",
-            contact = @Contact(name = "Elena"),
-            license = @License(name = "School Project")))
-public class OpenApiConfig {}
+                title = "Music API",
+                version = "1.0",
+                description = "Backend API for managing albums and songs",
+                contact = @Contact(name = "Elena"),
+                license = @License(name = "School Project")))
+public class OpenApiConfig {
+}

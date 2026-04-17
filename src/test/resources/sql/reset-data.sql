@@ -1,10 +1,16 @@
-DELETE FROM song;
-DELETE FROM album;
-DELETE FROM app_user;
-DELETE FROM role;
+DELETE
+FROM song;
+DELETE
+FROM album;
+DELETE
+FROM app_user;
+DELETE
+FROM role;
 
-INSERT INTO role (id, name) VALUES (1, 'ADMIN');
-INSERT INTO role (id, name) VALUES (2, 'EDITOR');
+INSERT INTO role (id, name)
+VALUES (1, 'ADMIN');
+INSERT INTO role (id, name)
+VALUES (2, 'EDITOR');
 
 INSERT INTO album (id, title, artist, genre, release_date, price, track_count, published)
 VALUES (1, 'Future Echoes', 'Nova Line', 'Pop', '2024-03-15', 19.90, 2, true);

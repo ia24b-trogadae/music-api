@@ -23,12 +23,15 @@ Zusätzlich wurde eine Authentifizierung mit JWT implementiert, um geschützte E
 ## Visuals
 
 ### ERD
+
 ![ERD](docs/erd.png)
 
 ### Klassendiagramm
+
 ![Class Diagram](docs/class-diagram.png)
 
 ### Testausführung
+
 ![Tests](docs/tests.png)
 
 Die Testfälle wurden erfolgreich ausgeführt. Alle Tests sind bestanden.
@@ -49,6 +52,7 @@ Folgende Validierungen wurden umgesetzt:
     - Darf nicht in der Zukunft liegen
 
 ---
+
 ## Berechtigungsmatrix
 
 Die API verwendet drei Zugriffsstufen:
@@ -59,18 +63,18 @@ Die API verwendet drei Zugriffsstufen:
 
 ### Tabelle
 
-| Endpoint | Methode | PermitAll | ADMIN | EDITOR |
-|----------|--------|----------|-------|--------|
-| /auth/login | POST | ✔ | ✔ | ✔ |
-| /albums/ping | GET | ✔ | ✔ | ✔ |
-| /albums | GET | ✘ | ✔ | ✔ |
-| /albums/{id} | GET | ✘ | ✔ | ✔ |
-| /albums/count | GET | ✘ | ✔ | ✔ |
-| /albums/by-date | GET | ✘ | ✔ | ✔ |
-| /albums | POST | ✘ | ✔ | ✔ |
-| /albums/{id} | PUT | ✘ | ✔ | ✔ |
-| /albums/{id} | DELETE | ✘ | ✔ | ✘ |
-| /albums | DELETE | ✘ | ✔ | ✘ |
+| Endpoint        | Methode | PermitAll | ADMIN | EDITOR |
+|-----------------|---------|-----------|-------|--------|
+| /auth/login     | POST    | ✔         | ✔     | ✔      |
+| /albums/ping    | GET     | ✔         | ✔     | ✔      |
+| /albums         | GET     | ✘         | ✔     | ✔      |
+| /albums/{id}    | GET     | ✘         | ✔     | ✔      |
+| /albums/count   | GET     | ✘         | ✔     | ✔      |
+| /albums/by-date | GET     | ✘         | ✔     | ✔      |
+| /albums         | POST    | ✘         | ✔     | ✔      |
+| /albums/{id}    | PUT     | ✘         | ✔     | ✔      |
+| /albums/{id}    | DELETE  | ✘         | ✔     | ✘      |
+| /albums         | DELETE  | ✘         | ✔     | ✘      |
 
 ### Erklärung
 
@@ -125,7 +129,8 @@ JWT_EXPIRATION_MS=3600000
 
 ## Codequalität
 
-Der Code wurde mit Spotless formatiert, um einen einheitlichen und sauberen Code-Stil im gesamten Projekt sicherzustellen.
+Der Code wurde mit Spotless formatiert, um einen einheitlichen und sauberen Code-Stil im gesamten Projekt
+sicherzustellen.
 
 ---
 
@@ -144,7 +149,9 @@ Der Datenzugriff erfolgte über JDBC und eigene DAO-Klassen.
 Zusätzlich wurden Validierungsregeln implementiert, um fehlerhafte Eingaben frühzeitig abzufangen.
 
 Ein zentraler Bestandteil war die Implementierung einer JWT-basierten Authentifizierung.  
-Benutzer können sich über einen Login anmelden und erhalten ein Token, welches für den Zugriff auf geschützte Endpunkte erforderlich ist.  
+Benutzer können sich über einen Login anmelden und erhalten ein Token, welches für den Zugriff auf geschützte Endpunkte
+erforderlich ist.  
 Die Zugriffsrechte werden über Rollen (ADMIN und EDITOR) gesteuert.
 
-Für die Qualitätssicherung wurden automatisierte Tests erstellt, welche sowohl die Funktionalität der API als auch die Security überprüfen.  
+Für die Qualitätssicherung wurden automatisierte Tests erstellt, welche sowohl die Funktionalität der API als auch die
+Security überprüfen.  
